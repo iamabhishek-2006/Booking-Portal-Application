@@ -1,22 +1,21 @@
-const express = require("express");
 const {  userRegisterDB, LoginByEmail, } = require("../../service/user.service");
+const { generateToken } = require("../../utils");
 
 
 const userRegister=async(req,res)=>{
 
-    const { name, email, password } = req.body;
+    const { name, email, password ,phone} = req.body;
 
-    if(!name || !email || !password){
+    if(!name || !email || !password || !phone){
       return res.json({
         success:false,
         error:"All fields are required"
       })
     }
 
-
     try {
 
-        const user = await userRegisterDB({ name, email, password });
+        const user = await userRegisterDB({ name, email, password,phone });
         return res.status(200).json({
           success: true,
           message: "user register successfully",
@@ -56,10 +55,18 @@ const userLogin = async (req, res) => {
       })
     }
 
+    const {accesstoken,refreshtoken}=generateToken({
+        id:user._id,
+        name:user.name,
+        email:user.email,
+        password:user.password
+    })
+
     return res.status(200).json({
       success: true,
       message: "user Login successfully",
-      data: user,
+      data: {user,accesstoken,refreshtoken}
+
     });
   } catch (error) {
     console.log(error);
