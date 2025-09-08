@@ -1,4 +1,4 @@
-const {  userRegisterDB, LoginByEmail, } = require("../../service/user.service");
+const { userRegisterDB, LoginByEmail } = require("../../service/users/user.service");
 const { generateToken } = require("../../utils");
 
 
