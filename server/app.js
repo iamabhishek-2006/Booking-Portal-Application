@@ -4,6 +4,8 @@ const { connectDB } = require("./src/config/db");
 const authRoutes = require("./src/routes/user.routes.js/auth.routes");
 const flightRoutes=require("./src/routes/admin.routes.js/flight.routes")
 const publicRoutes=require("./src/routes/public.routes")
+const BookingRoutes=require("./src/routes/user.routes.js/booking.routes")
+
 const app = express();
 connectDB();
 
@@ -24,6 +26,7 @@ app.use("/public",publicRoutes)
 app.use("/admin",flightRoutes);
 
 // user
+app.use("/user",BookingRoutes)
 
 app.listen(PORT, () => {
   console.log(`server is running on http://localhost:${PORT}`);

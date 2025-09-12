@@ -2,6 +2,7 @@ const { addFlightDB, updateFlightDB, deleteFlightDB, getflightDB } = require("..
 
 const addFlight=async(req,res)=>{
     const {airline,flightNumber,departure,arrival,departureTime,arrivalTime,seats,price}=req.body;
+    const flightData=req.body;
 
     if(!airline || !flightNumber || !departure || !arrival || !departureTime ||!arrivalTime || !seats || !price ){
         res.json({
@@ -10,7 +11,7 @@ const addFlight=async(req,res)=>{
         })
     }
     try {
-    const data=await addFlightDB(req.body);
+    const data=await addFlightDB(flightData);
     return res.status(200).json({
         success:true,
         message:" flight add successfully",
