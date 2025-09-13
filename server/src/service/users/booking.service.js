@@ -1,11 +1,13 @@
 const Booking = require("../../model/booking");
 
-const userBookingDB=async(flightId,seatsBooked,userId)=>{
- const booking = new Booking({ user: userId, flight: flightId,seatsBooked});
+const userBookingDB = async (flight,seatsBooked,user,passport,visa,travelingType) => {
+  const booking = new Booking({  flight,  seatsBooked,  user,  passport,  visa,  travelingType});
 
   return await booking.save();
-}
+};
 
-const cancelBookingDB=()=>{}
+const cancelBookingDB=async(id)=>{
+  return await Booking.findByIdAndUpdate(id,{status:"cancelled"},{new:true});
+}
 
 module.exports={userBookingDB,cancelBookingDB}

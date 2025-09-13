@@ -17,7 +17,7 @@ app.get("/", (req, res) => {
 
 const PORT = 3000;
 
-app.use("/auth", authRoutes);
+app.use("/auth", authRoutes);  //right
 
 //public
 app.use("/public",publicRoutes)
@@ -26,7 +26,7 @@ app.use("/public",publicRoutes)
 app.use("/admin",flightRoutes);
 
 // user
-app.use("/user",BookingRoutes)
+app.use("/user",BookingRoutes);
 
 app.listen(PORT, () => {
   console.log(`server is running on http://localhost:${PORT}`);

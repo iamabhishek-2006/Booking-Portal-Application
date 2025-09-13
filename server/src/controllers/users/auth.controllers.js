@@ -9,8 +9,9 @@ const userRegister=async(req,res)=>{
     if(!name || !email || !password || !phone){
       return res.json({
         success:false,
-        error:"All fields are required"
-      })
+        error:"All fields are required",
+        require:["name", "email", "password", "phone"]
+      });
     }
 
     try {
@@ -23,14 +24,14 @@ const userRegister=async(req,res)=>{
         });
     } catch (error) {
       console.log(error);
-      if(error===11000){
+      if(error.code===11000){
         return res.json({
           error:"user already exists"
-        })
+        });
       }
       return res.status(500).json({
         success:false,
-        message:"user register unsuccessfully",
+        error:"user register unsuccessfully",
       })
     }
 }
@@ -42,6 +43,7 @@ const userLogin = async (req, res) => {
     return res.json({
       success: false,
       error: "All fields are required",
+      require:["email", "password"]
     });
   }
 
@@ -52,7 +54,7 @@ const userLogin = async (req, res) => {
       return res.json({
         success:false,
         error:"user not found"
-      })
+      });
     }
 
     const {accesstoken,refreshtoken}=generateToken({
@@ -72,7 +74,7 @@ const userLogin = async (req, res) => {
     console.log(error);
     return res.status(500).json({
       success: false,
-      message: "Login unseccessfull",
+      error: "Login failed!",
     });
   }
 };

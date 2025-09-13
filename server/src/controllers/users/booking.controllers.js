@@ -1,28 +1,47 @@
-const { userBookingDB } = require("../../service/users/booking.service");
+const { userBookingDB, cancelBookingDB } = require("../../service/users/booking.service");
 
-const userBooking=async(req,res)=>{
-    const {seatsBooked}=req.body;
-    const {flightId,userId}=req.params;
-    // const {userId}=req.user.id;
-    // const {seatsBooked}=req.body;
+const userBooking = async (req, res) => {
+  const { flight,seatsBooked, user, passport, visa ,travelingType} = req.body;
 
-    try {
-    const data=await userBookingDB(flightId,seatsBooked,userId);
+  try {
+    const data = await userBookingDB( flight,seatsBooked,  user,  passport,  visa,  travelingType);
     return res.status(200).json({
-        success:true,
-        message:"user Book successfully",
-        data:data
+      success: true,
+      message: "user Booking successfully",
+      data: data,
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      success: false,
+      error: "something went wrong",
+    });
+  }
+};
+
+const cancelBooking = async(req,res) => {
+  const {id}=req.params;
+  try {
+  const result=await cancelBookingDB(id);
+  if(!result){
+    return res.json({
+      success:false,
+      message:"Booking not found already cancelled"
     })
-    } catch (error) {
-        console.log(error);
-        return res.status(500).json({
-            success:false,
-            error:"something went wrong",
-        })
-    }
+  }
+  return res.status(200).json({
+    success:true,
+    message:"cancel booking successfully",
+    result
     
-}
+  })
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+    success:false,
+    error:"something went wrong"
+  })
+  }
+};
 
-const cancelBooking=()=>{}
-
-module.exports={userBooking,cancelBooking}
+module.exports = { userBooking, cancelBooking };

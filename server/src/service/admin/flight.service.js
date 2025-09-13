@@ -1,8 +1,11 @@
 const Flight = require("../../model/flight");
-const flight = require("../../model/flight")
 
+const getflightDB = async () => {
+  const flights = Flight.find({});
+  return await flights;
+};
 const addFlightDB=async(flightData)=>{
-    const newFlight= new flight(flightData);
+    const newFlight= new Flight(flightData);
     return await newFlight.save();
 }
 
@@ -13,9 +16,5 @@ const updateFlightDB=async(id,updateData)=>{
 const deleteFlightDB=async(id)=>{
     return await Flight.findByIdAndDelete(id);
 }
-const getflightDB = async () => {
-  const flights = Flight.find({});
-  return await flights;
-};
 
 module.exports={addFlightDB,updateFlightDB,deleteFlightDB,getflightDB};
