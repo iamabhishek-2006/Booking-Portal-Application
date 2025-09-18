@@ -6,7 +6,9 @@ const getflightDB = async () => {
 };
 const addFlightDB=async(flightData)=>{
     const newFlight= new Flight(flightData);
-    return await newFlight.save();
+    // return await newFlight.save().populate("airport");
+   return  (await newFlight.save()).populate("airport");
+
 }
 
 const updateFlightDB=async(id,updateData)=>{

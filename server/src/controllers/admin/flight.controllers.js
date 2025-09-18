@@ -6,27 +6,9 @@ const {
 } = require("../../service/admin/flight.service");
 
 const addFlight = async (req, res) => {
-  const {
-    airline,
-    flightNumber,
-    departure,
-    arrival,
-    departureTime,
-    arrivalTime,
-    seats,
-    price,
-  } = req.body;
+  const { airline, flightNumber, departure, arrival, departureTime, arrivalTime,seats,price,availableSeats,airport} = req.body;
  
-  if (
-    !airline ||
-    !flightNumber ||
-    !departure ||
-    !arrival ||
-    !departureTime ||
-    !arrivalTime ||
-    !seats ||
-    !price
-  ) {
+  if ( !airline || !flightNumber || !departure || !arrival || !departureTime || !arrivalTime || !seats || !price ||!availableSeats ||!airport) {
     res.json({
       success: false,
       error: "all fields are required",

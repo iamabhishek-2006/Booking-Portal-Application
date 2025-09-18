@@ -3,7 +3,7 @@ const { addFlight, updateFlight, deleteFlight, getFight } = require("../../contr
 
 const router=express.Router();
 router.get("/",getFight)
-router.post("/flight",addFlight);
+router.post("/",addFlight);
 router.put("/:id",updateFlight);
 router.delete("/:id",deleteFlight);
 

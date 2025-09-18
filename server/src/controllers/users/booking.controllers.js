@@ -11,6 +11,9 @@ const userBooking = async (req, res) => {
       data: data,
     });
   } catch (error) {
+    if(error.code===11000){
+      return res.json({success:false,message:"user already booked this flight"})
+    }
     console.log(error);
     return res.status(500).json({
       success: false,
