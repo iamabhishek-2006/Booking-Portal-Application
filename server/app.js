@@ -1,10 +1,9 @@
 require("dotenv").config();
 const express = require("express");
 const { connectDB } = require("./src/config/db");
-const authRoutes = require("./src/routes/user/auth.routes");
 const publicRoutes=require("./src/routes/public.routes")
 const adminRoutes=require("./src/routes/admin")
-const BookingRoutes=require("./src/routes/user/booking.routes")
+const BookingRoutes=require("./src/routes/user")
 
 const app = express();
 connectDB();
@@ -17,10 +16,8 @@ app.get("/", (req, res) => {
 
 const PORT = 3000;
 
-app.use("/auth", authRoutes);  //right
-
 //public
-app.use("/public",publicRoutes)
+app.use("/",publicRoutes)
 
 // admin
 app.use("/admin",adminRoutes);
