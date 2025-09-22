@@ -4,12 +4,14 @@ const flightSchema = new mongoose.Schema(
   {
     airline: { type: String, required: true }, // indigo , emirates
     flightNumber: { type: String, required: true, unique: true },
+    slug:{type:String,required:true},
     departure: { type: String, required: true },
     arrival: { type: String, required: true },
     departureTime: { type: Date, required: true },
     arrivalTime: { type: Date, required: true },
     seats: { type: Number, required: true },
     availableSeats: { type: Number, required: true },
+    date: { type: Date, required: true },
     price: { type: Number, required: true },
     airport: {
       type: mongoose.Schema.Types.ObjectId,
@@ -17,8 +19,8 @@ const flightSchema = new mongoose.Schema(
       required: true,
     },
     luggaePolicy: {
-        cabin: { type: String, default:"7kg" },
-        checkIn: { type: String, default:"15kg" },
+      cabin: { type: String, default: "7kg" },
+      checkIn: { type: String, default: "15kg" },
     },
   },
   { timestamps: true }

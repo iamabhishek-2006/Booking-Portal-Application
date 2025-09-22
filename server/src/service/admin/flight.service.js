@@ -4,19 +4,17 @@ const getflightDB = async () => {
   const flights = Flight.find({});
   return await flights;
 };
-const addFlightDB=async(flightData)=>{
-    const newFlight= new Flight(flightData);
-    // return await newFlight.save().populate("airport");
-   return  (await newFlight.save()).populate("airport");
+const addFlightDB = async (flightData) => {
+  const newFlight = new Flight(flightData);
+  return (await newFlight.save()).populate("airport");
+};
 
-}
+const updateFlightDB = async (id, updateData) => {
+  return await Flight.findByIdAndUpdate(id, updateData, { new: true });
+};
 
-const updateFlightDB=async(id,updateData)=>{
-    return await Flight.findByIdAndUpdate(id,updateData,{new:true});
-}
+const deleteFlightDB = async (id) => {
+  return await Flight.findByIdAndDelete(id);
+};
 
-const deleteFlightDB=async(id)=>{
-    return await Flight.findByIdAndDelete(id);
-}
-
-module.exports={addFlightDB,updateFlightDB,deleteFlightDB,getflightDB};
+module.exports = { addFlightDB, updateFlightDB, deleteFlightDB, getflightDB };

@@ -1,13 +1,16 @@
 const Booking = require("../../model/booking");
 
-const userBookingDB = async (flight,seatsBooked,user,passport,visa,travelingType) => {
-  const booking = new Booking({  flight,  seatsBooked,  user,  passport,  visa,  travelingType});
-
-  return await booking.save();
+const userBookingDB = async ({seatsBooked,passport,visa,travelingType} ,userId, flight) => {
+  const booking = new Booking({seatsBooked,passport,visa,travelingType,user:userId,flight} );
+  return ((await booking.save()).populate("Flight"));
 };
 
-const cancelBookingDB=async(id)=>{
-  return await Booking.findByIdAndUpdate(id,{status:"cancelled"},{new:true});
-}
+const cancelBookingDB = async (id) => {
+  return await Booking.findByIdAndDelete(
+    id,
+    { status: "cancelled" },
+    { new: true }
+  );
+};
 
-module.exports={userBookingDB,cancelBookingDB}
+module.exports = { userBookingDB, cancelBookingDB };

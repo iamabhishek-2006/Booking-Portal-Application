@@ -11,8 +11,8 @@ const createSeatsDB=async(body)=>{
 // };
 
 const updateSeatsDB = async (id, updatedData) => {
-  const updateData = new Seats.findByIdAndUpdate(id, updatedData, { new: true});
-  return await updateData;
+   return await Seats.findByIdAndUpdate(id,updatedData,{new:true});
+
 };
 
 

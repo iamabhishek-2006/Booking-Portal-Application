@@ -61,7 +61,8 @@ const userLogin = async (req, res) => {
         id:user._id,
         name:user.name,
         email:user.email,
-        password:user.password
+        password:user.password,
+        role:user.role    // jab token generate hoga to role yaha se jaega step No  1
     })
 
     return res.status(200).json({

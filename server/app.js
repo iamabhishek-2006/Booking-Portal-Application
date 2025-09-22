@@ -3,7 +3,8 @@ const express = require("express");
 const { connectDB } = require("./src/config/db");
 const publicRoutes=require("./src/routes/public.routes")
 const adminRoutes=require("./src/routes/admin")
-const BookingRoutes=require("./src/routes/user")
+const BookingRoutes=require("./src/routes/user");
+const authMiddleware = require("./src/middleware/auth.middleware");
 
 const app = express();
 connectDB();
@@ -20,6 +21,8 @@ const PORT = 3000;
 app.use("/",publicRoutes)
 
 // admin
+
+
 app.use("/admin",adminRoutes);
 
 // user

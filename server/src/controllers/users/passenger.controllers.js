@@ -26,6 +26,14 @@ const addPassenger=async(req,res)=>{
     })
     } catch (error) {
     console.log(error);
+
+    if(error.code==11000){
+        return res.status(500).json({
+            success:true,
+            error:"passenger already exists"
+        })
+    }
+    
     return res.status(500).json({
         success:false,
         error:"something went wrong"

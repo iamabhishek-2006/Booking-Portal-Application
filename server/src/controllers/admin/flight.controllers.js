@@ -4,18 +4,19 @@ const {
   deleteFlightDB,
   getflightDB,
 } = require("../../service/admin/flight.service");
+const { generateSlug } = require("../../utils");
 
 const addFlight = async (req, res) => {
-  const { airline, flightNumber, departure, arrival, departureTime, arrivalTime,seats,price,availableSeats,airport} = req.body;
- 
-  if ( !airline || !flightNumber || !departure || !arrival || !departureTime || !arrivalTime || !seats || !price ||!availableSeats ||!airport) {
-    res.json({
-      success: false,
-      error: "all fields are required",
-    });
-  }
+  
   try {
-    const data = await addFlightDB(req.body);
+    const body = req.body;
+
+    if (body.airline &&  body.departure && body.arrival  && body.date) {
+      body.slug = generateSlug(`${body.airline} ${body.departure} to ${body.arrival} && ${body.date}`);
+    }
+
+
+    const data = await addFlightDB(body);
     return res.status(200).json({
       success: true,
       message: " flight add successfully",
@@ -56,6 +57,10 @@ const updateFlight = async (req, res) => {
   const { id } = req.params;
   const updateData = req.body;
 
+if (updateData.airline && updateData.departure && updateData.arrival && updateData.date) {
+  updateData.slug = generateSlug( `${updateData.airline} ${updateData.departure} to ${updateData.arrival} ${updateData.date}`);
+}
+ 
   try {
     if (!updateData) {
       return res.json({
