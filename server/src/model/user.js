@@ -3,12 +3,13 @@ const mongoose = require("mongoose");
 const userSchema = new mongoose.Schema(
   {
     email: { type: String, required: true, unique: true },
-    password: { type: Number, required: true },
+    password: { type: String, required: true },
     name: { type: String, required: true },
     phone: { type: String, required: true },
     role: { type: String, enum: ["user", "admin"], default: "user" }, // step 3
   },
-  { timestamps: true }
+  // { timestamps: true },
+  { versionkey: false }
 );
 
 const User = mongoose.model("User", userSchema);

@@ -6,7 +6,7 @@ const userBookingDB = async ({seatsBooked,passport,visa,travelingType} ,userId, 
 };
 
 const cancelBookingDB = async (id) => {
-  return await Booking.findByIdAndDelete(
+  return await Booking.findByIdAndUpdate(
     id,
     { status: "cancelled" },
     { new: true }

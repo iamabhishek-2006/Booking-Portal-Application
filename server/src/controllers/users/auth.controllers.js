@@ -1,5 +1,5 @@
 const { userRegisterDB, LoginByEmail } = require("../../service/users/user.service");
-const { generateToken } = require("../../utils");
+const { generateToken, hashPassword, verifyPassword } = require("../../utils");
 
 
 const userRegister=async(req,res)=>{
@@ -15,8 +15,17 @@ const userRegister=async(req,res)=>{
     }
 
     try {
+        // hash password
 
-        const user = await userRegisterDB({ name, email, password,phone });
+        const hashPswd=await hashPassword(password);
+
+        const user = await userRegisterDB({ name, email, password:hashPswd,phone });
+
+        // remove password
+
+        user.password=undefined;
+        user.__v=undefined;
+
         return res.status(200).json({
           success: true,
           message: "user register successfully",
@@ -42,7 +51,7 @@ const userLogin = async (req, res) => {
   if (!email || !password) {
     return res.json({
       success: false,
-      error: "All fields are required",
+      error: "Email & password is required",
       require:["email", "password"]
     });
   }
@@ -56,6 +65,17 @@ const userLogin = async (req, res) => {
         error:"user not found"
       });
     }
+
+    // hash password
+    const isValid=await verifyPassword(password,user.password);
+    if(!isValid){
+      return res.json({
+        success:false,
+        error:"wrong password"
+      });
+    }
+
+    user.password=undefined;
 
     const {accesstoken,refreshtoken}=generateToken({
         id:user._id,

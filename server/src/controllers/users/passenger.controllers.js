@@ -1,9 +1,5 @@
-const { passengerDetailDB, updatePassengerDB, getAllPassengersDB } = require("../../service/users/passenger.service");
+const { passengerDetailDB, updatePassengerDB } = require("../../service/users/passenger.service");
 
-const getAllPassengers=async(req,res)=>{
-    const data=await getAllPassengersDB();
-    return res.json({success:true,data:data});
-}
 
 
 const addPassenger=async(req,res)=>{
@@ -60,4 +56,4 @@ const updatePassenger=async(req,res)=>{
     }
 }
 
-module.exports={addPassenger,updatePassenger,getAllPassengers}
+module.exports={addPassenger,updatePassenger}

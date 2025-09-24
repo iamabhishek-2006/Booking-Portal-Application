@@ -3,7 +3,6 @@ const { addPassenger, updatePassenger, getAllPassengers } = require("../../contr
 
 const router=express.Router();
 
-router.get("/",getAllPassengers)
 router.post("/", addPassenger);
 router.put("/:id",updatePassenger);
 

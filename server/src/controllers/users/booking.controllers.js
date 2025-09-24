@@ -32,6 +32,7 @@ const userBooking = async (req, res) => {
 
 const cancelBooking = async (req, res) => {
   const { id } = req.params;
+  
   try {
     const result = await cancelBookingDB(id);
     if (!result) {

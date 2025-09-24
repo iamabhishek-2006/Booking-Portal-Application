@@ -6,15 +6,30 @@ const {
 } = require("../../service/admin/flight.service");
 const { generateSlug } = require("../../utils");
 
+const getFight = async (req, res) => {
+  try {
+    const flight = await getflightDB();
+    return res.json({
+      success: true,
+      data: flight,
+    });
+  } catch (error) {
+    console.log(error);
+    return res.json({
+      success: false,
+      error: "something went wrong",
+    });
+  }
+};
 const addFlight = async (req, res) => {
-  
   try {
     const body = req.body;
 
-    if (body.airline &&  body.departure && body.arrival  && body.date) {
-      body.slug = generateSlug(`${body.airline} ${body.departure} to ${body.arrival} && ${body.date}`);
+    if (body.airline && body.departure && body.arrival && body.date) {
+      body.slug = generateSlug(
+        `${body.airline} ${body.departure} to ${body.arrival} && ${body.date}`
+      );
     }
-
 
     const data = await addFlightDB(body);
     return res.status(200).json({
@@ -37,30 +52,18 @@ const addFlight = async (req, res) => {
   }
 };
 
-const getFight = async (req, res) => {
-  try {
-    const flight = await getflightDB();
-    return res.json({
-      success: true,
-      data: flight,
-    });
-  } catch (error) {
-    console.log(error);
-    return res.json({
-      success: false,
-      error: "something went wrong",
-    });
-  }
-};
 
 const updateFlight = async (req, res) => {
   const { id } = req.params;
   const updateData = req.body;
 
-if (updateData.airline && updateData.departure && updateData.arrival && updateData.date) {
-  updateData.slug = generateSlug( `${updateData.airline} ${updateData.departure} to ${updateData.arrival} ${updateData.date}`);
-}
- 
+
+  if ( updateData.airline && updateData.departure && updateData.arrival && updateData.date) {
+    updateData.slug = generateSlug( `${updateData.airline} ${updateData.departure} to ${updateData.arrival} ${updateData.date}`);
+  }
+  console.log(updateData.slug);
+
+
   try {
     if (!updateData) {
       return res.json({

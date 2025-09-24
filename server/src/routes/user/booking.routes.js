@@ -7,6 +7,6 @@ const {
 const router = express.Router();
 
 router.post("/book/:id", userBooking);
-router.delete("/:id", cancelBooking);
+router.put("/:id", cancelBooking);
 
 module.exports = router;
