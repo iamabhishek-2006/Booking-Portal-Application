@@ -3,25 +3,12 @@ const mongoose = require("mongoose");
 const bookingSchema = new mongoose.Schema(
   {
     user: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
-    flight: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Flight",
-      required: true,
-    },
-    travelingType: {
-      type: String,
-      enum: ["Domestic", "International"],
-      default: "Domestic",
-      required: true,
-    },
-    passport: { type: String },
-    visa: { type: String },
+    flight: { type: mongoose.Schema.Types.ObjectId, ref: "Flight", required: true},
+    travelingType: {  type: String,  enum: [ "International","Domestic"],  default: "International",  required: true},
+    passport: { type: String ,required:true},
+    visa: { type: String ,required:true},
     seatsBooked: { type: Number, required: true,min:1 },
-    status: {
-      type: String,
-      enum: ["confirmed", "cancelled", "pending"],
-      default: "pending",
-    },
+    status: {type: String,enum: ["confirmed", "cancelled", "pending"],default: "pending"},
   },
   { timestamps: true }
 );

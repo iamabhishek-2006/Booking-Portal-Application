@@ -8,6 +8,10 @@ const userBooking = async (req, res) => {
   const flight = req.params.id;
   const userId = req.user.id;
 
+  if(!seatsBooked || !travelingType ){
+    return res.json({success:false,error:"all fields are required"});
+  }
+
   try {
     const data = await userBookingDB({seatsBooked,passport,visa,travelingType}, userId, flight);
     return res.status(200).json({
@@ -16,13 +20,13 @@ const userBooking = async (req, res) => {
       data: data,
     });
   } catch (error) {
+    console.log(error);
     if (error.code === 11000) {
       return res.json({
         success: false,
-        message: "user already booked this flight",
+        message: "user already booking this flight",
       });
     }
-    console.log(error);
     return res.status(500).json({
       success: false,
       error: "something went wrong",
@@ -32,7 +36,7 @@ const userBooking = async (req, res) => {
 
 const cancelBooking = async (req, res) => {
   const { id } = req.params;
-  
+
   try {
     const result = await cancelBookingDB(id);
     if (!result) {

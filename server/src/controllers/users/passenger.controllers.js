@@ -1,20 +1,35 @@
 const { passengerDetailDB, updatePassengerDB } = require("../../service/users/passenger.service");
 
-
-
 const addPassenger=async(req,res)=>{
-    const body=req.body;
+    const {FirstName,LastName,DOB,Gender,email,phone,Address,Country,passportNumber,passportExpireDate,Nationality,AddharNumber}=req.body;
 
-    if(!body){
-        return res.status(401).json({
-            success:false,
-            error:"all fields are required",
-            // required:[""]
-        })
+    // if(!FirstName || !LastName || !DOB || !Gender || !email || !phone || !Address || !Country || !passportNumber || !passportExpireDate || !Nationality || AddharNumber){
+    //     return res.json({success:false,error:"All fields are required"});
+    // }
+
+    // if(!body){
+    //     return res.status(401).json({
+    //         success:false,
+    //         error:"all fields are required",
+    //         require:["firstName"]
+    //     })
+    // }
+
+    if(AddharNumber.length===12){
+        return res.json({success:false,error:"enter 12 digits"})
     }
 
+    if(phone.length===10){
+        return res.json({success:false,error:"enter 10 digits"})
+    }
+
+    // Todo: check user if exists
+
+    const userId=req.user.id;
+    req.body.user=userId;
+
     try {
-    const passengerDetail=await passengerDetailDB(body);
+    const passengerDetail=await passengerDetailDB(req.body);
     return res.json({
         success:true,
         message:"user added all details successfully",
@@ -29,7 +44,6 @@ const addPassenger=async(req,res)=>{
             error:"passenger already exists"
         })
     }
-    
     return res.status(500).json({
         success:false,
         error:"something went wrong"

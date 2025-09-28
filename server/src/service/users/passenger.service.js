@@ -1,8 +1,8 @@
 const PassengerInfo = require("../../model/passenger")
 
-const passengerDetailDB=async(body)=>{
-    const passengerData=new PassengerInfo(body);
-    return (await passengerData.save()).populate("user");
+const passengerDetailDB=async(data)=>{
+    const passengerData=new PassengerInfo(data);
+    return (await (await passengerData.save()).populate({path:"user", select:"name email phone  "}));
 }
 
 const updatePassengerDB=async(id,body)=>{

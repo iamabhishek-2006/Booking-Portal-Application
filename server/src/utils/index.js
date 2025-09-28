@@ -12,7 +12,7 @@ const generateToken = (data) => {
 };
 
 const generateSlug = (name) => {
-  console.log(name, "this is name");
+  // console.log(name, "this is name");
   return name.toLowerCase().trim().replace(/\s+/g, "-");
 };
 

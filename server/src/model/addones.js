@@ -4,7 +4,7 @@ const seatsSchema = new mongoose.Schema(
   {
     flight: {type: mongoose.Schema.Types.ObjectId,ref: "Flight"},
     user: { type: mongoose.Schema.Types.ObjectId, ref: "User"},
-    seatNumber: { type: String, required: true },
+    seatNumber: { type: String, required: true ,unique:true},
     isBooked: { type: Boolean, default: false },
     seatType: {
       type: String,

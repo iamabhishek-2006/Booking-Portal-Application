@@ -6,7 +6,7 @@ const getAllusersDB=async()=>{
 }
 
 const getAllPassengersDB = async () => {
-  return await PassengerInfo.find({});
+  return await PassengerInfo.find({}).populate("user");
 };
 
 

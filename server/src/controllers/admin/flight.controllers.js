@@ -56,14 +56,6 @@ const addFlight = async (req, res) => {
 const updateFlight = async (req, res) => {
   const { id } = req.params;
   const updateData = req.body;
-
-
-  if ( updateData.airline && updateData.departure && updateData.arrival && updateData.date) {
-    updateData.slug = generateSlug( `${updateData.airline} ${updateData.departure} to ${updateData.arrival} ${updateData.date}`);
-  }
-  console.log(updateData.slug);
-
-
   try {
     if (!updateData) {
       return res.json({
@@ -71,7 +63,17 @@ const updateFlight = async (req, res) => {
         error: "flight not found",
       });
     }
-    const data = await updateFlightDB(id, updateData, { new: true });
+    if (
+      updateData.airline &&
+      updateData.departure &&
+      updateData.arrival &&
+      updateData.date
+    ) {
+      updateData.slug = generateSlug(
+        `${updateData.airline} ${updateData.departure} to ${updateData.arrival} && ${updateData.date}`
+      );
+    }
+    const data = await updateFlightDB(id, updateData);
     return res.json({
       success: true,
       message: "flight updated successfully",
