@@ -1,9 +1,12 @@
 import React from 'react'
+import Layout from '../components/Layout';
 
-const passengers = () => {
+const Passengers = () => {
   return (
-    <div>passengers</div>
-  )
+    <Layout>
+      <div>Passengers</div>
+    </Layout>
+  );
 }
 
-export default passengers
+export default Passengers;

@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Edu+QLD+Hand:wght@400..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nata+Sans:wght@100..900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 *{
     margin: 0;
     padding: 0;
@@ -9,5 +10,33 @@
     width: 200px;
     border-right: 0.1px solid gray;
     background-color: white;
-    /* display: flex; */
+    display  : flex;
+
 }
+
+.SidebarLink{
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    gap:10px;
+}
+.Sidebar_Comp{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    text-decoration: none;
+    color: black;
+    font-family: "Raleway", sans-serif;
+    font: bold;
+    } 
+
+.Sidebar_Comp:active{
+    /* font-size:1.1rem; */
+    /* color: palevioletred; */
+    color: black;
+}
+
+/* .Sidebar_Comp:hover{
+    background-color:rgb(171, 171, 171);
+    color: purple;
+} */

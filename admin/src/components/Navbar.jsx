@@ -1,8 +1,17 @@
-import React from 'react'
-import style from "../styles/Navbar.module.css"
-import {LogOut, Search} from "lucide-react"
+import React from "react";
+import style from "../styles/Navbar.module.css";
+import { LogOut, Search } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
+
+  const logout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("reftoken");
+    window.href = "/login";
+  };
+
+
   return (
     <div className={style.Nav}>
       <div className={style.Image_content}>
@@ -19,13 +28,13 @@ const Navbar = () => {
         </button>
       </div>
       <div className={style.Nav_logOut}>
-        <button>
-          Log Out
-          <LogOut />
-        </button>
+        <Link className={style.Link} to="/login" >    <button onClick={logout}>
+            Log Out <LogOut />
+          </button>
+        </Link>
       </div>
     </div>
   );
-}
+};
 
 export default Navbar;

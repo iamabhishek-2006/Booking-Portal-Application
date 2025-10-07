@@ -4,7 +4,7 @@ import Layout from '../components/Layout'
 const Airport = () => {
   return (
     <Layout>
-      <div></div>
+      <div>Airports</div>
     </Layout>
   );
 }
