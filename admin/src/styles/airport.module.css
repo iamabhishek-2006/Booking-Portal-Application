@@ -1,0 +1,173 @@
+@import url('https://fonts.googleapis.com/css2?family=Edu+QLD+Hand:wght@400..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nata+Sans:wght@100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+.body {
+  width: calc(100vw - 200px);
+  /* height: calc(100vh - 60px); */
+}
+.AirPort_nav {
+  border-bottom: 1px solid gray;
+  height: 50px;
+  width: 100%;
+  display: flex; 
+  justify-content: space-between;
+}
+
+.nav_button {
+  display: flex;
+  border-radius: 8px;
+  padding: 5px 10px;
+  align-items: center;
+  height: 30px;
+  margin: 10px;
+  color: white;
+  background-color: rgb(2, 124, 155);
+  border: none;
+  cursor: pointer;
+}
+
+.Dailog {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 999;
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.Dailog_content {
+  visibility: hidden;
+}
+.AirPort_nav h1 {
+  margin: 5px;
+}
+.Dailog_form {
+  height: 350px;
+  width: 350px;
+  background-color: white;
+  border-radius: 5px;
+  position: fixed;
+
+}
+.Dailog_form h2 {
+  margin: 10px;
+  user-select: none;
+}
+
+.Dailog_button {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  width: 50px;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  border: none;
+}
+
+.Dailog_inputs {
+  display: flex;
+  flex-direction: column;
+  margin: 25px;
+  font-size: 18px;
+  gap: 5px;
+}
+.Dailog_inputs input {
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid gray;
+}
+
+.DailogSubmitBtn {
+  float: left;
+  width: fit-content;
+  background-color: #3b82f6; 
+  cursor:pointer;
+  padding: 4px 8px; 
+  font-size: 0.85rem;
+  border-radius: 5px; 
+  color: white; 
+  font-weight: 600; 
+  border: none;
+  /* transition: all 0.3s ease; */
+}
+
+.disabledBtn {
+  opacity: 0.5; 
+  cursor: not-allowed;
+}
+
+.loading {
+  cursor: progress;
+}
+
+
+
+.table_header {
+  justify-content: space-around;
+  align-items: center;
+}
+table{
+  width: calc(100vw - 200px);
+  border-collapse: collapse ;
+}
+
+th{
+  border: 2px solid black;
+  padding: 10px;
+  background-color: #D3DAD9;
+  font-size: 18px;
+  font-family: Arial, Helvetica, sans-serif;
+  /* font-family: "Raleway", sans-serif; */
+}
+
+td{
+   border: 2px solid black;
+   padding: 5px;
+   font-size: 17px;
+}
+
+.DeleteDailogForm{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 120px; 
+  width: 300px;
+  background-color: white;
+  border-radius: 5px;
+  position:fixed;
+} 
+.nav{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.buttons{
+  display: flex;
+  gap: 5px;
+  margin-left: 5px;
+}
+
+.buttons button{
+  color: white;
+  background-color: rgb(13, 159, 226);
+  border: none;
+  border-radius: 4px;
+  padding: 4px;
+  cursor: pointer;
+}
+
+.buttons button:nth-child(2){
+  color: white;
+  background-color: red;
+}
+
+.Icons{
+  display: flex;
+  justify-content: space-evenly;
+}

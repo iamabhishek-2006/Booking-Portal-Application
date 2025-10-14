@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import style from "../styles/login.module.css"
 
 const Login = () => {
+  const [loading,setLaoding]=useState(false)
   const [formData,setFormData]=useState({
     email:"",
     password:""
@@ -20,6 +21,7 @@ const Login = () => {
       return;
     }
    try {
+    setLaoding(true);
      const url = import.meta.env.VITE_SERVER_URL;
      const res = await fetch(`${url}/auth/login`,{
       method:"POST",
@@ -52,8 +54,11 @@ const Login = () => {
 
    } catch (error) {
     console.log("error:",error);
+   }finally{
+    setLaoding(false);
    }
   }
+  {loading?"Loading...":"Data fetched"}
 
   useEffect(()=>{
      if(localStorage.getItem("token")){
@@ -73,7 +78,7 @@ const Login = () => {
           value={formData.email}
           name="email"
           onChange={inputHandler}
-          type="text"
+          type="email"
           placeholder="Enter Email"
         />
         <label htmlFor="password" className={style.label}>

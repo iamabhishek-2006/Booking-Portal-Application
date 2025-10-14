@@ -1,4 +1,3 @@
-import React from "react";
 import style from "../styles/Navbar.module.css";
 import { LogOut, Search } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -7,7 +6,7 @@ const Navbar = () => {
 
   const logout = () => {
     localStorage.removeItem("token");
-    localStorage.removeItem("reftoken");
+    localStorage.removeItem("refToken");
     window.href = "/login";
   };
 
@@ -28,7 +27,7 @@ const Navbar = () => {
         </button>
       </div>
       <div className={style.Nav_logOut}>
-        <Link className={style.Link} to="/login" >    <button onClick={logout}>
+        <Link className={style.Link} to="/login" ><button onClick={logout}>
             Log Out <LogOut />
           </button>
         </Link>

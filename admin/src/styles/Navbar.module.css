@@ -17,6 +17,7 @@ img {
   border-radius: 50%;
   height: 50px;
   width: 50px;
+  user-select: none;
 }
 
 .Image_content {
