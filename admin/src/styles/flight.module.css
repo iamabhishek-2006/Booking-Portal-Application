@@ -1,0 +1,136 @@
+.flightheader{
+    width: calc(100vw - 200px);
+}
+.flightContent{
+    height: 50px;
+    width: 100%;
+    border-bottom: 1px solid gray;
+    display: flex;
+    justify-content: space-between;
+}
+
+.flightContent h1{
+    margin: 10px;
+    color: rgb(49, 5, 5);
+}
+
+.table{
+    width:calc(100vw - 200px);
+    border-collapse: collapse;
+}
+.table th{
+    background-color: #8DBCC7;
+}
+
+.NavButton{
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    padding: 10px;
+    border: none;
+    color: white;
+    background-color: #34656D;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.NavButton:hover{
+    background-color: rgb(46, 175, 46);
+    box-shadow:  5px 5px 5px #f2d2d2;;
+}
+
+
+.flight_back_drop{
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: rgba(25, 25, 25,0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.flight_form{
+    height: 650px;
+    width: 600px;
+    background-color: white;
+    border-radius: 5px;
+}
+
+.flight_hading{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.flight_hading :last-child{
+    background-color: red;
+    color: white;
+    margin-bottom: 40px;
+    border: none;
+    height: 20px;
+    width: 36px;
+    border-bottom-left-radius:5px;
+    border-top-right-radius:5px;
+}
+
+ .InputFields{
+    padding:10px;
+    font-size: 18px;
+ }
+
+ .inputBox{
+    width: 100%;
+    padding: 0.3rem;
+    border: 1px solid gray;
+    border-radius:7px;
+    font-size: 17px;
+    border: 2px solid gray;
+ }
+.inputBox:hover{
+    border: 2px solid black;
+}
+ .text_design{
+    font-family: Arial, Helvetica, sans-serif;
+ }
+ .InputBoxs{
+    display: flex;
+    justify-content: space-between;
+ }
+
+ .selectCategory{
+    display: flex;
+    flex-direction: column;
+ }
+
+ .Airport_header{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size:1rem;
+ }
+ 
+ .dailogSubmitbtn{
+    width: fit-content;
+    float: left;
+    margin-top: 5px;
+    width: 60px;
+    font-size: 15px;
+    border: none;
+    color: white;
+    background-color: #154dbd;
+    border-radius: 5px;
+    padding: 4px;
+ }
+
+.lucide_icons{
+    display: flex;
+    gap: 5px;
+}
+.loadingState{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

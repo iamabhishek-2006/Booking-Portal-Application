@@ -1,7 +1,6 @@
 import { Trash } from 'lucide-react'
 import React, { useState } from 'react'
 import styles from "../styles/airport.module.css";
-// import style from "../styles/deleteDailog.module.css";
 
 export const DeleteAirPort = ({deleteD,id}) => {
     const [open,setOpen]=useState(false);
@@ -31,9 +30,7 @@ const Dailog=({open,close,id,deleteD})=>{
           },
         });
         const data = await res.json();
-        // console.log(data,"show deletedData");
         if (!data.success) {
-              // alert(data.error);
           alert( data.error || "something went wrong");
           console.log(data.error || "something went wrong");
         }

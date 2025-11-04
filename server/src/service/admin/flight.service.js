@@ -1,7 +1,7 @@
 const Flight = require("../../model/flight");
 
 const getflightDB = async () => {
-  const flights = Flight.find({});
+  const flights = Flight.find({}).populate("airport");
   return await flights;
 };
 const addFlightDB = async (flightData) => {

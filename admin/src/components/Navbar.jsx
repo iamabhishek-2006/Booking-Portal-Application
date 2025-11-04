@@ -14,8 +14,8 @@ const Navbar = () => {
   return (
     <div className={style.Nav}>
       <div className={style.Image_content}>
-        {/* <img src="../../public/flightImage.png" alt="flight" /> */}
-        <img src="public/flightImage.png" alt="flight" />
+        <img src="../../public/flightImage.png" alt="flight" />
+        {/* <img src="public/flightImage.png" alt="flight" /> */}
 
         <h1>Airways</h1>
       </div>

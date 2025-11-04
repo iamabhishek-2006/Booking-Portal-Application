@@ -20,8 +20,8 @@ const NewAirPort = ({add}) => {
 const Dailog=({open,onClose,add})=>{
   const [loading,setLoading]=useState(false);
   const [input, setInput] = useState({
-    airport_Code: "",
     airport_Name: "",
+    airport_Code: "",
     city: "",
     country: "",
   });
@@ -56,8 +56,8 @@ const Dailog=({open,onClose,add})=>{
       }
       add(data.data);
       setInput({
-        airport_Code: "",
         airport_Name: "",
+        airport_Code: "",
         city: "",
         country: "",
       });
@@ -72,28 +72,34 @@ const Dailog=({open,onClose,add})=>{
   return (
     <div className={`${open ? styles.Dailog : styles.Dailog_content}`}>
       <div className={styles.Dailog_form}>
-        <h2>New AirPorts</h2>
+        <h2 >New AirPorts</h2>
         <button onClick={onClose} className={styles.Dailog_button}>
           X
         </button>
         <div className={styles.Dailog_inputs}>
-          <label htmlFor="">AirPort</label>
-          <input
-            value={input.airport_Code}
-            name="airport_Code"
-            onChange={inputSubmit}
-            type="text"
-            placeholder="Add New AirPort"
-          />
-          <label htmlFor="">Airport code</label>
+          <label htmlFor="" className={styles.Dailog_header}>
+            Airport Name
+          </label>
           <input
             value={input.airport_Name}
             name="airport_Name"
             onChange={inputSubmit}
             type="text"
-            placeholder="Enter Airport code"
+            placeholder="Airport Name"
           />
-          <label htmlFor="">City</label>
+          <label htmlFor="" className={styles.Dailog_header}>
+            AirPort Code
+          </label>
+          <input
+            value={input.airport_Code}
+            name="airport_Code"
+            onChange={inputSubmit}
+            type="text"
+            placeholder="Add Airport code"
+          />
+          <label htmlFor="" className={styles.Dailog_header}>
+            City
+          </label>
           <input
             value={input.city}
             onChange={inputSubmit}
@@ -101,7 +107,9 @@ const Dailog=({open,onClose,add})=>{
             type="text"
             placeholder="Enter City"
           />
-          <label htmlFor="">Country</label>
+          <label htmlFor="" className={styles.Dailog_header}>
+            Country
+          </label>
           <input
             value={input.country}
             onChange={inputSubmit}
@@ -112,7 +120,9 @@ const Dailog=({open,onClose,add})=>{
           <button
             disabled={!input || loading}
             onClick={DailogDataSubmit}
-            className={`${styles.DailogSubmitBtn } ${!input && styles.DiabledBtn} ${loading && styles.loading}`}
+            className={`${styles.DailogSubmitBtn} ${
+              !input && styles.DiabledBtn
+            } ${loading && styles.loading}`}
           >
             {loading ? "creating" : "create"}
           </button>

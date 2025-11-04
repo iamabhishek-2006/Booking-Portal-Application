@@ -4,7 +4,7 @@ const flightSchema = new mongoose.Schema(
   {
     airline: { type: String, required: true }, // indigo , emirates
     flightNumber: { type: String, required: true, unique: true },
-    slug:{type:String,required:true},
+    slug:{type:String,unique:true},
     departure: { type: String, required: true },
     arrival: { type: String, required: true },
     departureTime: { type: Date, required: true },

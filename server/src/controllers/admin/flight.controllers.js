@@ -24,14 +24,12 @@ const getFight = async (req, res) => {
 const addFlight = async (req, res) => {
   try {
     const body = req.body;
-
-    if (body.airline && body.departure && body.arrival && body.date) {
-      body.slug = generateSlug(
-        `${body.airline} ${body.departure} to ${body.arrival} && ${body.date}`
-      );
+    if (body.airline && body.departure && body.arrival && body.date){
+       body.slug = generateSlug(`${body.airline} ${body.departure} to ${body.arrival} && ${body.date}`);
     }
 
     const data = await addFlightDB(body);
+    console.log(data,"jkshjfdh");
     return res.status(200).json({
       success: true,
       message: " flight add successfully",
@@ -47,7 +45,7 @@ const addFlight = async (req, res) => {
     console.log(error);
     return res.status(400).json({
       success: false,
-      error: "something went wrong",
+      error: "something went wrong sorry",
     });
   }
 };
@@ -69,7 +67,7 @@ const updateFlight = async (req, res) => {
       updateData.arrival &&
       updateData.date
     ) {
-      updateData.slug = generateSlug(
+      updateData.slug= generateSlug(
         `${updateData.airline} ${updateData.departure} to ${updateData.arrival} && ${updateData.date}`
       );
     }

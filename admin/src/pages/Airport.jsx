@@ -7,10 +7,14 @@ import EditAirPort from "../dailogs/EditAirPort"
 
 const Airport = () => {
   const [data, setData] = useState([]);
-
+  const [loading,setLoading]=useState(false);
+  
+  // add
   const addAirPort = (NewAirPort) => {
     setData([...data, NewAirPort]);
   };
+
+  // update
 
   const updateAirPort=(id,newData)=>{
     setData(data.map((item)=>{
@@ -23,7 +27,8 @@ const Airport = () => {
     }))
   }
 
-
+  // delete
+  
   const AirPortDataDelete=(id)=>{
     setData(data.filter((item)=>item._id !== id));
   }
@@ -32,6 +37,7 @@ const Airport = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        setLoading(true);
         const url = import.meta.env.VITE_SERVER_URL;
         const res = await fetch(`${url}/admin/airport`, {
           method: "GET",
@@ -47,6 +53,8 @@ const Airport = () => {
         setData(data.data);
       } catch (error) {
         console.log(error);
+      }finally{
+        setLoading(false);
       }
     };
     fetchData();
@@ -59,38 +67,49 @@ const Airport = () => {
           <h1>AirPorts</h1>
           <NewAirPort add={addAirPort} />
         </div>
-        <div className={styles.table_header}>
-          <table>
-            <thead>
-              <tr>
-                <th>AirPort Name</th>
-                <th>AirPort code</th>
-                <th>City</th>
-                <th>Country</th>
-                <th>Actions</th>
-                <th>Total flights</th>
-              </tr>
-            </thead>
-            <tbody>
-              {data.map((item) => (
-                <tr key={item._id}>
-                  <td>{item.airport_Code}</td>
-                  <td>{item.airport_Name}</td>
-                  <td>{item.city}</td>
-                  <td>{item.country}</td>
-                  <td>
-                    <div className={styles.Icons}>
-                      <EditAirPort id={item._id} item={item} edit={updateAirPort}  />
-                      <DeleteAirPort
-                        deleteD={AirPortDataDelete}   id={item._id}  />
-                    </div>
-                  </td>
-                        <td>{item.total || 0}</td>
+
+        <div className={styles.loadingState}> {!data.length && loading && <h3>Loading...</h3>}</div>
+
+        {data.length !== 0 && (
+          <div className={styles.table_header}>
+            <table>
+              <thead>
+                <tr>
+                  <th>AirPort Name</th>
+                  <th>AirPort code</th>
+                  <th>City</th>
+                  <th>Country</th>
+                  <th>Total flights</th>
+                  <th>Actions</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+              </thead>
+              <tbody>
+                {data.map((item) => (
+                  <tr key={item._id}>
+                    <td>{item.airport_Name}</td>
+                    <td>{item.airport_Code}</td>
+                    <td>{item.city}</td>
+                    <td>{item.country}</td>
+                    <td>{item.total || 0}</td>
+                    <td>
+                      <div className={styles.Icons}>
+                        <EditAirPort
+                          id={item._id}
+                          item={item}
+                          edit={updateAirPort}
+                        />
+                        <DeleteAirPort
+                          deleteD={AirPortDataDelete}
+                          id={item._id}
+                        />
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
       </div>
     </Layout>
   );

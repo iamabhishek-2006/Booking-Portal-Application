@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Edu+QLD+Hand:wght@400..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nata+Sans:wght@100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 .body {
   width: calc(100vw - 200px);
-  /* height: calc(100vh - 60px); */
+  /* height: calc(100vh - 50px); */
 }
 .AirPort_nav {
   border-bottom: 1px solid gray;
@@ -65,9 +65,10 @@
   width: 50px;
   background-color: rgba(0, 0, 0, 0.8);
   color: white;
-  border-radius: 5px;
   cursor: pointer;
   border: none;
+  border-top-right-radius: 5px;
+  border-bottom-left-radius: 5px;
 }
 
 .Dailog_inputs {
@@ -77,6 +78,11 @@
   font-size: 18px;
   gap: 5px;
 }
+
+.Dailog_header{
+  font-family: Arial, Helvetica, sans-serif;
+}
+
 .Dailog_inputs input {
   padding: 5px;
   border-radius: 5px;
@@ -106,9 +112,8 @@
   cursor: progress;
 }
 
-
-
 .table_header {
+  display: flex;
   justify-content: space-around;
   align-items: center;
 }
@@ -123,7 +128,6 @@ th{
   background-color: #D3DAD9;
   font-size: 18px;
   font-family: Arial, Helvetica, sans-serif;
-  /* font-family: "Raleway", sans-serif; */
 }
 
 td{
@@ -170,4 +174,17 @@ td{
 .Icons{
   display: flex;
   justify-content: space-evenly;
+}
+
+.Trash{
+  color: red;
+}
+.Trash:hover{
+  font-size: 18px;
+  color: green;
+}
+.loadingState{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

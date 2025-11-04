@@ -3,11 +3,9 @@ const { createSeatsDB, updateSeatsDB } = require("../../service/users/seats.serv
 const createSeats=async(req,res)=>{
     const body=req.body;
     const userId=req.user.id;
-    // console.log(userId);
 
     try {    
     const seatsData=  await createSeatsDB(body,userId);
-    // console.log(seatsData);
     return res.status(200).json({
         success:true, message:"seats add successfully",data:seatsData
     })

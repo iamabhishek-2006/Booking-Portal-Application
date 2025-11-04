@@ -1,19 +1,19 @@
 const { addairportDB, getAirportsDB, updateAirPortDB, deleteAirportDB} = require("../../service/admin/airport.service");
 
 const createAirport=async(req,res)=>{
-    const {airport_Code,airport_Name,city,country}=req.body;
+    const { airport_Name, airport_Code, city, country } = req.body;
 
-    if(!airport_Code || !airport_Name || !city || !country){
-
-        return res.json({
-          success: false,
-          error: "all fields are required",
-          require: ["aiport_code", "airport_Name", "city", "country"],
-        });
+    if (!airport_Name || !airport_Code | !city || !country) {
+      return res.json({
+        success: false,
+        error: "all fields are required",
+        require: [ "airport_Name","aiport_code", "city", "country"],
+      });
     }
 
    try {
      const data = await addairportDB(req.body);
+     console.log(data);
      return res.status(200).json({
        success: true,
        message: "Airport addedd successfully",

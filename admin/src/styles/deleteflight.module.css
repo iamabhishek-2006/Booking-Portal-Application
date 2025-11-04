@@ -1,0 +1,62 @@
+.DailogContent{
+    visibility: hidden;
+}
+
+.DailogBackDrop{
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0,0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.Trash{
+    cursor: pointer;
+    color: red;
+}
+
+.Trash:hover{
+    color:green;
+}
+
+.DeleteDailogForm{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90px; 
+  width: 400px;
+  background-color: white;
+  border-radius: 5px;
+  position:fixed;
+} 
+
+.dailogHeading{
+    margin-bottom: 5px; 
+    font-size: 18px;  
+}
+.button{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 30px;
+}
+
+.button1{
+    font-size: 17px;
+    color: white;
+    background-color: gray;
+    border-radius: 4px;
+    border: none;
+    padding: 4px;
+}
+.button2{
+    font-size: 17px;
+    color: white;
+    background-color: red;
+    border-radius: 4px;
+    border: none;
+    padding: 4px;
+}
