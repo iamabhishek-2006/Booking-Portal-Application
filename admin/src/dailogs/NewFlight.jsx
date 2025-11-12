@@ -16,6 +16,7 @@ const NewFlight = ({airPortD}) => {
 }
 
 const Dailog=({onClose,airPortD})=>{
+    const [loading,setLoading]=useState(false);
     const [formData,setFormData]=useState({
         airline:"",
         flightNumber:"",  
@@ -32,6 +33,7 @@ const Dailog=({onClose,airPortD})=>{
 
     const handleSubmit=async()=>{
       try {
+      setLoading(true)
       const url=import.meta.env.VITE_SERVER_URL;
       const res=await fetch(`${url}/admin/flight`,{
         method:"POST",
@@ -64,6 +66,8 @@ const Dailog=({onClose,airPortD})=>{
       airPortD(data.data);
       } catch (error) {
       console.log(error);
+      }finally{
+        setLoading(false);
       }
     }
 
@@ -171,7 +175,7 @@ const Dailog=({onClose,airPortD})=>{
                   </option>
                 ))}
               </select>
-              <button onClick={handleSubmit} className={Styles.dailogSubmitbtn}>Add</button>
+              <button onClick={handleSubmit} className={Styles.dailogSubmitbtn}>{loading ? "Adding":"Add" }  </button>
             </div>
           </div>
         </div>

@@ -1,4 +1,6 @@
+const { default: mongoose } = require("mongoose");
 const AirPort = require("../../model/airport");
+const Flight = require("../../model/flight");
 
 const addairportDB=async(airportData)=>{
     const airport=new AirPort(airportData);
@@ -6,7 +8,15 @@ const addairportDB=async(airportData)=>{
 }
 
 const getAirportsDB=async()=>{
-    return await AirPort.find()
+    const AirPorts=await AirPort.find({}).lean();
+
+    const AirPortsTotal=await Promise.all(
+        AirPorts.map(async(AirP)=>{
+            const total=await Flight.countDocuments({airport:AirP._id});
+            return {...AirP,total}
+        })
+    );
+    return AirPortsTotal;
 }
 
 const updateAirPortDB=async(id,updateData)=>{
@@ -14,7 +24,19 @@ const updateAirPortDB=async(id,updateData)=>{
 }
 
 const deleteAirportDB=async(id)=>{
-    return await AirPort.findByIdAndDelete(id);
+    const session=await mongoose.startSession();
+
+    try {
+    const res=await session.withTransaction(async()=>{
+        await AirPort.findByIdAndDelete(id,{session});
+        await Flight.deleteMany({airport:id},{session});
+    })
+    console.log(res);
+    return {};
+    } catch (error) {
+      console.log(error);
+      return null;
+    }
 }
 
 module.exports={addairportDB,getAirportsDB,deleteAirportDB,updateAirPortDB}

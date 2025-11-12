@@ -31,12 +31,5 @@
     } 
 
 .Sidebar_Comp:active{
-    /* font-size:1.1rem; */
-    /* color: palevioletred; */
     color: black;
 }
-
-/* .Sidebar_Comp:hover{
-    background-color:rgb(171, 171, 171);
-    color: purple;
-} */

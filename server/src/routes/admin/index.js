@@ -7,7 +7,7 @@ const passengerRoutes=require("./passenger.routes");
 
 const router=express.Router();
 
-router.use("/",getAlluser);
+router.use("/users",getAlluser);
 router.use("/passengers",passengerRoutes)
 router.use("/airport",airportRoutes);
 router.use("/flight",flightRoutes);

@@ -5,7 +5,4 @@ const getAllusers = async (req, res) => {
   return res.json({ success: true, data: data });
 };
 
-
-
-
 module.exports = { getAllusers  };

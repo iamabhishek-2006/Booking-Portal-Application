@@ -7,6 +7,7 @@ import EditAirPort from "../dailogs/EditAirPort"
 
 const Airport = () => {
   const [data, setData] = useState([]);
+  console.log(data,"hi total data");
   const [loading,setLoading]=useState(false);
   
   // add

@@ -3,19 +3,8 @@ const { passengerDetailDB, updatePassengerDB } = require("../../service/users/pa
 const addPassenger=async(req,res)=>{
     const {FirstName,LastName,DOB,Gender,email,phone,Address,Country,passportNumber,passportExpireDate,Nationality,AddharNumber}=req.body;
 
-    // if(!FirstName || !LastName || !DOB || !Gender || !email || !phone || !Address || !Country || !passportNumber || !passportExpireDate || !Nationality || AddharNumber){
-    //     return res.json({success:false,error:"All fields are required"});
-    // }
 
-    // if(!body){
-    //     return res.status(401).json({
-    //         success:false,
-    //         error:"all fields are required",
-    //         require:["firstName"]
-    //     })
-    // }
-
-    if(AddharNumber.length===12){
+    if(AddharNumber.length === 12){
         return res.json({success:false,error:"enter 12 digits"})
     }
 

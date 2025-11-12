@@ -13,7 +13,6 @@ const createAirport=async(req,res)=>{
 
    try {
      const data = await addairportDB(req.body);
-     console.log(data);
      return res.status(200).json({
        success: true,
        message: "Airport addedd successfully",
@@ -41,12 +40,10 @@ const deleteAirport=async(req,res)=>{
 
 const UpdateAirPort=async(req,res)=>{
   const {id}=req.params;
-  console.log(id);
   const updateData=req.body;
 
   try {
   const data=await updateAirPortDB(id,updateData);
-  console.log(data);
   return res.status(200).json({success:true,message:"AirPort updated successfully",data:data});
   } catch (error) {
   console.log(error);

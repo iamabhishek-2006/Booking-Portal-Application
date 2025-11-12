@@ -16,7 +16,7 @@ module.exports = (req, res, next) => {
       });
     }
     req.user = payload;
-    console.log(req.user);
+    // console.log(req.user);
   } catch (error) {
     console.log(error);
     return res.json({

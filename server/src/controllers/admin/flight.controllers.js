@@ -29,7 +29,7 @@ const addFlight = async (req, res) => {
     }
 
     const data = await addFlightDB(body);
-    console.log(data,"jkshjfdh");
+    // console.log(data,"jkshjfdh");
     return res.status(200).json({
       success: true,
       message: " flight add successfully",

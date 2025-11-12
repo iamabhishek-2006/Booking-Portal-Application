@@ -31,8 +31,6 @@ const Login = () => {
       body:JSON.stringify(formData),
      })
      const data=await res.json();
-     console.log(data,"check access token");
-
 
      if(!data.success){
       console.log(data.error);
