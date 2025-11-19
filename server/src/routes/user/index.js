@@ -3,7 +3,7 @@ const bookingRoutes = require("./booking.routes");
 const seatsRoutes = require("./seats.routes");
 const passengerRoutes = require("./passenger.routes");
 const authMiddleware = require("../../middleware/auth.middleware");
-const domesticRoutes=require("./domestic.routes")
+const domesticRoutes=require("./domestic.routes");
 const router = express.Router();
 
 router.use("/booking", authMiddleware, bookingRoutes);

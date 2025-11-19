@@ -24,7 +24,7 @@ app.get("/", (req, res) => {
 const PORT = 3000;
 
 //public
-app.use("/", publicRoutes);
+app.use("", publicRoutes);
 app.use("/auth", authRoutes);
 
 // admin
