@@ -2,14 +2,15 @@ import React, { useEffect, useState } from "react";
 import Layout from "../components/Layout";
 import styles from "../styles/airport.module.css";
 import NewAirPort from "../dailogs/NewAirPort";
-import  {DeleteAirPort}  from "../dailogs/DeleteAirPort";
-import EditAirPort from "../dailogs/EditAirPort"
+import { DeleteAirPort } from "../dailogs/DeleteAirPort";
+import EditAirPort from "../dailogs/EditAirPort";
+import { withAuth } from "../components/withAuth";
 
 const Airport = () => {
   const [data, setData] = useState([]);
-  console.log(data,"hi total data");
-  const [loading,setLoading]=useState(false);
-  
+  console.log(data, "hi total data");
+  const [loading, setLoading] = useState(false);
+
   // add
   const addAirPort = (NewAirPort) => {
     setData([...data, NewAirPort]);
@@ -17,23 +18,25 @@ const Airport = () => {
 
   // update
 
-  const updateAirPort=(id,newData)=>{
-    setData(data.map((item)=>{
-      if(item._id !==id){
-        return {
-          ...item,newData
+  const updateAirPort = (id, newData) => {
+    setData(
+      data.map((item) => {
+        if (item._id !== id) {
+          return {
+            ...item,
+            newData,
+          };
         }
-      }
-      return item,newData;
-    }))
-  }
+        return item, newData;
+      })
+    );
+  };
 
   // delete
-  
-  const AirPortDataDelete=(id)=>{
-    setData(data.filter((item)=>item._id !== id));
-  }
 
+  const AirPortDataDelete = (id) => {
+    setData(data.filter((item) => item._id !== id));
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -54,7 +57,7 @@ const Airport = () => {
         setData(data.data);
       } catch (error) {
         console.log(error);
-      }finally{
+      } finally {
         setLoading(false);
       }
     };
@@ -69,7 +72,10 @@ const Airport = () => {
           <NewAirPort add={addAirPort} />
         </div>
 
-        <div className={styles.loadingState}> {!data.length && loading && <h3>Loading...</h3>}</div>
+        <div className={styles.loadingState}>
+          {" "}
+          {!data.length && loading && <h3>Loading...</h3>}
+        </div>
 
         {data.length !== 0 && (
           <div className={styles.table_header}>
@@ -116,4 +122,4 @@ const Airport = () => {
   );
 };
 
-export default Airport;
+export default withAuth(Airport);

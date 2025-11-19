@@ -1,13 +1,10 @@
 import React from 'react'
 import { Cell, Legend, Pie, PieChart, ResponsiveContainer, Tooltip } from "recharts";
-// import styles from "../styles/dashboard.module.css";
 
 
 const Dashboard = ({allData}) => {
-  console.log(allData,"hi random data");
   const colors = ["#FFA500", "#008000", "#FF0000"];
   return (
-    // <div className={styles.circular}>
     
          <ResponsiveContainer height={300}  width="100%">
             <PieChart>
@@ -20,7 +17,6 @@ const Dashboard = ({allData}) => {
             <Legend/>
             </PieChart>
          </ResponsiveContainer>
-    //  </div>
   )
 }
 

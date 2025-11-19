@@ -44,7 +44,8 @@
   height: 300px;
   width: 520px;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-  /* background-color: #87cefa; */
+  position: relative;
+  overflow:hidden;
 }
 .rechart_box:hover {
   box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
@@ -62,8 +63,10 @@
 .flightImage img {
   height: 150px;
   width: 150px;
-  margin-top: 50px;
+  margin-top: -40px;
   animation: slide 2s linear infinite ;
+  position: absolute;
+  z-index: 10;
 }
 
 @keyframes slide{
@@ -73,4 +76,37 @@
     100%{
         transform: translateX(380px);
     }
+}
+
+.cloudes{
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 70px;
+}
+
+/* .cloudes img{
+  height: 70px;
+  width: 100px;
+  animation: cloud 3s linear 1s infinite;
+  margin-left: 520px;
+}
+@keyframes cloud{
+    0%{
+      transform: translateX(0);
+    }
+    100%{
+      transform: translateX(380);
+      margin-left: -400px;
+    }
+} */
+
+.cloudImage2{
+  height: 70px;
+  width: 100px;
+  margin-top: -10px;
+}
+
+.Link{
+  text-decoration: none;
+  color: black;
 }

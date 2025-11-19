@@ -6,7 +6,6 @@ import Flight from "./pages/Flight";
 import Users from "./pages/users";
 import Passengers from "./pages/passengers";
 import Login from "./pages/Login";
-import serverError from "./assets/serverError.webp"; 
 
 const App = () => {
   return (
@@ -18,14 +17,7 @@ const App = () => {
         <Route path="/users" element={<Users />} />
         <Route path="/passengers" element={<Passengers />} />
         <Route path="/login" element={<Login />} />
-        <Route    path="*"    element={  <div>      <h1>401 not found</h1>  {/* <img
-                src={serverError}
-                alt="Server Error"
-                style={{ width: 914, height:730, backgroundColor:"black"} }
-              /> */}
-            </div>
-          }
-        />
+        <Route    path="*"    element={  <div  ><h1>401 not found</h1> </div> }/>
       </Routes>
     </BrowserRouter>
   );

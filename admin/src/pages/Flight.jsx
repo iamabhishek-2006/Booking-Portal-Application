@@ -1,78 +1,78 @@
-import React from 'react'
-import Layout from '../components/Layout'
-import { useEffect } from 'react'
-import { useState } from 'react'
-import Styles from "../styles/flight.module.css"
-import NewFlight from '../dailogs/NewFlight'
-import Editflight from '../dailogs/Editflight'
-import Deleteflight from '../dailogs/Deleteflight'
+import React from "react";
+import Layout from "../components/Layout";
+import { useEffect } from "react";
+import { useState } from "react";
+import Styles from "../styles/flight.module.css";
+import NewFlight from "../dailogs/NewFlight";
+import Editflight from "../dailogs/Editflight";
+import Deleteflight from "../dailogs/Deleteflight";
+import { withAuth } from "../components/withAuth";
 
 const Flight = () => {
-  const [data,setData]=useState([]);
-  const [airPort,setAirPort]=useState([]);
-  const [loading,setLoading]=useState(false)
+  const [data, setData] = useState([]);
+  const [airPort, setAirPort] = useState([]);
+  const [loading, setLoading] = useState(false);
 
+  const deleteFlight = async (id) => {
+    setData(data.filter((item) => item._id !== id));
+    setAirPort(airPort.filter((item) => item._id !== id));
+  };
 
- const deleteFlight=async(id)=>{
-    setData(data.filter((item)=>item._id !== id));
-    setAirPort(airPort.filter((item)=>item._id !== id));
- }
+  //  const airPortD=(newData)=>{
+  //     setData([...data,newData])
+  //  }
 
-//  const airPortD=(newData)=>{
-//     setData([...data,newData])
-//  }
-
-    // fetch flight 
-    useEffect(() => {
-      const fetchData = async () => {
-        try {
-          setLoading(true)
-          const url = import.meta.env.VITE_SERVER_URL;
-          const res = await fetch(`${url}/admin/flight`, {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${localStorage.getItem("token")}`,
-            },
-          });
-          const data = await res.json();
-          if (!data.success) {
-            alert(data.error || "something went wrong");
-          }
-          setData(data.data);
-        } catch (error) {
-          console.log(error);
-        }finally{
-          setLoading(false);
+  // fetch flight
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        const url = import.meta.env.VITE_SERVER_URL;
+        const res = await fetch(`${url}/admin/flight`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        });
+        const data = await res.json();
+        if (!data.success) {
+          alert(data.error || "something went wrong");
         }
-      };
-      fetchData();
-    }, []);
-
-    // fetch airport
-
-    useEffect(()=>{
-      const fetchData2=async()=>{
-        try {
-          const url = import.meta.env.VITE_SERVER_URL;
-          const res = await fetch(`${url}/admin/airport`, {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${localStorage.getItem("token")}`,
-            },
-          });
-          const data2 = await res.json();
-          if(!data2.success ){
-            alert(data2.error || "something went wrong");
-          }
-          setAirPort(data2.data)
-        } catch (error) {
-          console.log(error);
-        }
+        setData(data.data);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setLoading(false);
       }
-      fetchData2();
-    },[])
+    };
+    fetchData();
+  }, []);
+
+  // fetch airport
+
+  useEffect(() => {
+    const fetchData2 = async () => {
+      try {
+        const url = import.meta.env.VITE_SERVER_URL;
+        const res = await fetch(`${url}/admin/airport`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        });
+        const data2 = await res.json();
+        if (!data2.success) {
+          alert(data2.error || "something went wrong");
+        }
+        setAirPort(data2.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData2();
+  }, []);
 
   return (
     <Layout>
@@ -81,7 +81,9 @@ const Flight = () => {
           <h1>Flights</h1>
           <NewFlight airPortD={airPort} />
         </div>
-        <div className={Styles.loadingState}>{!data.length && loading && <h2>Loading</h2>}</div>
+        <div className={Styles.loadingState}>
+          {!data.length && loading && <h2>Loading</h2>}
+        </div>
         {data.length !== 0 && (
           <div>
             <table className={Styles.table}>
@@ -131,6 +133,6 @@ const Flight = () => {
       </div>
     </Layout>
   );
-}
+};
 
-export default Flight;
+export default withAuth(Flight);
