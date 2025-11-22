@@ -1,9 +1,9 @@
 // import { DropdownMenu } from "@radix-ui/react-dropdown-menu";
-import {  CircleUser } from "lucide-react";
+// import {  CircleUser } from "lucide-react";
 // import { Button } from "./ui/button";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
-// import  { DropdownMenuDemo } from "./Menubar";
+import  { DropdownMenuDemo } from "./Menubar";
 
 
 const Navbar = () => {
@@ -17,16 +17,17 @@ const Navbar = () => {
           </h1>
         </div>
         <div className="">
-          <Link to="/signUp">
+          {/* <Link to="/signUp">
           <button className=" flex items-center justify-center rounded-xl mt-5 cursor-pointer m-5 text-white hover:text-blue-300  ">
               <CircleUser />
               SignUp
             </button>
-          </Link>
+          </Link> */}
           {/* <Button>Click me</Button> */}
           {/* <DropdownMenu>hjh</DropdownMenu> */}
           {/* <Menubar/> */}
-          {/* <DropdownMenuDemo></DropdownMenuDemo> */}
+          <DropdownMenuDemo>
+          </DropdownMenuDemo>
         </div>
       </div>
     </div>

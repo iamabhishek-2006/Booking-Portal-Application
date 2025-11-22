@@ -11,7 +11,6 @@ const AuthProvider = ({ children }) => {
       try {
         const token = localStorage.getItem("token");
         
-        console.log(token, "token");
         const res = await fetch("http://localhost:3000/admin/me", {
           method: "GET",
           headers: {

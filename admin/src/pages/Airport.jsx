@@ -8,7 +8,6 @@ import { withAuth } from "../components/withAuth";
 
 const Airport = () => {
   const [data, setData] = useState([]);
-  console.log(data, "hi total data");
   const [loading, setLoading] = useState(false);
 
   // add
@@ -73,7 +72,6 @@ const Airport = () => {
         </div>
 
         <div className={styles.loadingState}>
-          {" "}
           {!data.length && loading && <h3>Loading...</h3>}
         </div>
 

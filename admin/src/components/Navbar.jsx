@@ -14,9 +14,8 @@ const Navbar = () => {
   return (
     <div className={style.Nav}>
       <div className={style.Image_content}>
-        <img src="../../public/flightImage.png" alt="flight" />
-        {/* <img src="public/flightImage.png" alt="flight" /> */}
-
+        <img
+          src="/flightImage.png" alt="flight"  />
         <h1>Airways</h1>
       </div>
 
@@ -27,7 +26,8 @@ const Navbar = () => {
         </button>
       </div>
       <div className={style.Nav_logOut}>
-        <Link className={style.Link} to="/login" ><button onClick={logout}>
+        <Link className={style.Link} to="/login">
+          <button onClick={logout}>
             Log Out <LogOut />
           </button>
         </Link>
