@@ -14,9 +14,19 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { CircleUser } from "lucide-react";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
+
+
+
 
 export function DropdownMenuDemo() {
+
+    const logout = () => {
+      localStorage.removeItem("token");
+      localStorage.removeItem("refToken");
+      window.location.href = "/signup";
+    };
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -66,11 +76,14 @@ export function DropdownMenuDemo() {
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuItem>GitHub</DropdownMenuItem>
-        <DropdownMenuItem>Support</DropdownMenuItem>
         <DropdownMenuItem asChild>
+          <Link to="signin">SignIn</Link>
+        </DropdownMenuItem>
+        <DropdownMenuItem asChild>
+          <Link to="/signup">SignUp</Link>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>
+        <DropdownMenuItem onClick={logout}>
           Log out
           <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
         </DropdownMenuItem>

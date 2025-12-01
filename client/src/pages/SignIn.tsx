@@ -7,6 +7,7 @@ const SignIn = () => {
       email:"",
       password:""
     })
+    // console.log(form);
   
     const InputHandle=(event:React.ChangeEvent<HTMLInputElement>)=>{
       setForm({...form,[event.target.name]:event.target.value});
@@ -43,7 +44,6 @@ const SignIn = () => {
       }finally{
         setLoading(false);
       }
-      
     }
 
 
